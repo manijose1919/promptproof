@@ -1,0 +1,31 @@
+# Example: wire PromptProof into GitHub Actions.
+# Copy this to .github/workflows/promptproof.yml in your repo.
+name: PromptProof
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  prompt-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Option A — use the reusable action:
+      - uses: promptproof/promptproof-action@v1
+        with:
+          suite: prompts/suite.yaml
+          reporter: github
+
+      # Option B — call the CLI directly (equivalent):
+      # - run: npx promptproof run prompts/suite.yaml --reporter junit --output results.xml
+      # - if: always()
+      #   uses: dorny/test-reporter@v1
+      #   with:
+      #     name: PromptProof
+      #     path: results.xml
+      #     reporter: java-junit

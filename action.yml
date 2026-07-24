@@ -1,0 +1,54 @@
+# PromptProof — GitHub Action (Free)
+# Runs a PromptProof suite and fails the job on any regression.
+#
+# Usage in a workflow:
+#   - uses: promptproof/promptproof-action@v1
+#     with:
+#       suite: prompts/suite.yaml
+#       reporter: github
+name: "PromptProof"
+description: "Regression-test your LLM prompts in CI and fail the build on drift."
+author: "PromptProof"
+branding:
+  icon: "check-circle"
+  color: "purple"
+
+inputs:
+  suite:
+    description: "Path to the PromptProof suite YAML/JSON file."
+    required: true
+  reporter:
+    description: "Reporter: console | junit | github."
+    required: false
+    default: "github"
+  output:
+    description: "Optional path to write the report to (e.g. results.xml)."
+    required: false
+    default: ""
+  version:
+    description: "npm version/tag of the promptproof CLI to use."
+    required: false
+    default: "latest"
+  working-directory:
+    description: "Directory to run in."
+    required: false
+    default: "."
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run PromptProof
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        set -euo pipefail
+        ARGS=(run "${{ inputs.suite }}" --reporter "${{ inputs.reporter }}")
+        if [ -n "${{ inputs.output }}" ]; then
+          ARGS+=(--output "${{ inputs.output }}")
+        fi
+        # The 'github' reporter writes its Markdown summary to the job summary.
+        if [ "${{ inputs.reporter }}" = "github" ]; then
+          npx --yes "promptproof@${{ inputs.version }}" "${ARGS[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+        else
+          npx --yes "promptproof@${{ inputs.version }}" "${ARGS[@]}"
+        fi

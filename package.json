@@ -9,7 +9,7 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist", "README.md", "HOW-TO.md", "SETUP.md", "SECURITY.md", "LICENSE", "action.yml", "examples"],
+  "files": ["dist", "README.md", "HOW-TO.md", "SETUP.md", "SECURITY.md", "CHANGELOG.md", "LICENSE", "action.yml", "examples"],
   "engines": {
     "node": ">=18"
   },

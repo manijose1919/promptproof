@@ -7,12 +7,13 @@ on:
     branches: [main]
 
 jobs:
+  # Full test suite on the versions our test tooling (vitest 4) supports.
   test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        node-version: ["18", "20", "22"]
+        node-version: ["20", "22"]
     name: test (node ${{ matrix.node-version }})
     steps:
       - uses: actions/checkout@v4
@@ -28,17 +29,18 @@ jobs:
       - name: Build
         run: npm run build
 
-  dogfood:
+  # Prove the published artifact actually runs on the minimum supported runtime
+  # (engines.node >= 18) by building and running the real CLI there.
+  compat-node18:
     runs-on: ubuntu-latest
-    needs: test
-    name: dogfood (run our own example suite)
+    name: node 18 runtime compatibility
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "18"
           cache: npm
       - run: npm ci
       - run: npm run build
-      - name: Run the example suite through the built CLI
+      - name: Run the example suite through the built CLI (node 18)
         run: node dist/cli.js run examples/greeting.suite.yaml --reporter github

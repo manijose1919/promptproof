@@ -4,7 +4,10 @@ This guide gets you from a fresh clone to a green test run.
 
 ## Prerequisites
 
-- **Node.js ≥ 18** (uses native `fetch` and ESM). Check with `node --version`.
+- **Node.js ≥ 18** to *run* PromptProof (the published CLI/library uses native
+  `fetch` and ESM). Check with `node --version`.
+- **Node.js ≥ 20** to *develop* it — the test runner (Vitest 4) requires Node 20+.
+  CI verifies Node-18 runtime compatibility separately by running the built CLI.
 - npm (bundled with Node).
 
 ## 1. Install dependencies

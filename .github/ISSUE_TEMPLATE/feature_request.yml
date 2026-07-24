@@ -1,0 +1,39 @@
+name: Feature request
+description: Suggest an assertion, reporter, provider, or workflow improvement.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the use case, not just the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should PromptProof do? A YAML sketch of the desired config is ideal.
+      render: yaml
+    validations:
+      required: false
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Assertion
+        - Reporter
+        - Provider
+        - CLI / workflow
+        - Docs
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: tier
+    attributes:
+      label: Tier expectation
+      options:
+        - label: I believe this fits the Free (OSS) tier
+        - label: This may be a Premium/Pro capability

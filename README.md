@@ -1,6 +1,6 @@
 # PromptProof — Jest for prompts
 
-[![tests](https://img.shields.io/badge/tests-68%20passing-brightgreen)](#) [![version](https://img.shields.io/badge/version-1.0.0-blue)](#) [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) [![node](https://img.shields.io/badge/node-%3E%3D18-informational)](#)
+[![CI](https://github.com/manijose1919/promptproof/actions/workflows/ci.yml/badge.svg)](https://github.com/manijose1919/promptproof/actions/workflows/ci.yml) [![tests](https://img.shields.io/badge/tests-68%20passing-brightgreen)](#) [![version](https://img.shields.io/badge/version-1.0.0-blue)](#) [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) [![node](https://img.shields.io/badge/node-%3E%3D18-informational)](#)
 
 **Regression-test your LLM features the way you test everything else.** PromptProof runs prompt test suites, checks the output against assertions, and **fails your CI build** when a prompt regresses — all **fully offline** and **free**.
 

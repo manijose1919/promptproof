@@ -1,0 +1,49 @@
+name: Bug report
+description: Something isn't working as documented.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for filing a bug! A minimal reproducible suite helps enormously.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you get instead?
+      placeholder: "I expected the case to pass, but it failed with …"
+    validations:
+      required: true
+  - type: textarea
+    id: suite
+    attributes:
+      label: Minimal suite (YAML)
+      description: The smallest `suite.yaml` that reproduces the issue.
+      render: yaml
+    validations:
+      required: false
+  - type: input
+    id: command
+    attributes:
+      label: Command
+      placeholder: "promptproof run suite.yaml --reporter junit"
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: promptproof version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node.js version
+      placeholder: "20.11.0"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output / logs
+      render: shell

@@ -16,7 +16,7 @@ jobs:
         node-version: ["20", "22"]
     name: test (node ${{ matrix.node-version }})
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     name: node 18 runtime compatibility
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version: "18"

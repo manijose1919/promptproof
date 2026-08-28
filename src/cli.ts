@@ -3,7 +3,7 @@
  * PromptProof CLI (Free tier).
  *
  * Commands:
- *   promptproof run <suite.yaml> [--reporter console|junit] [--output file]
+ *   promptproof run <suite.yaml> [--reporter console|junit|github] [--output file]
  *                                [--color] [--timeout ms] [--provider name]
  *   promptproof list                     # show registered capabilities
  *
@@ -30,7 +30,7 @@ program
   .command("run")
   .description("Run a prompt test suite")
   .argument("<suite>", "path to a suite YAML/JSON file")
-  .option("-r, --reporter <name>", "reporter: console | junit", "console")
+  .option("-r, --reporter <name>", "reporter: console | junit | github", "console")
   .option("-o, --output <file>", "write the report to a file instead of stdout")
   .option("--color", "force colorized console output (default: auto-detect TTY)")
   .option("--no-color", "disable console color")
